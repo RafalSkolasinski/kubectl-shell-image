@@ -1,11 +1,10 @@
-ARG ALPINE=alpine:latest
-FROM ${ALPINE} as alpine
-ARG ARCH
+FROM alpine:latest as alpine
+ARG ARCH=amd64
 
 RUN apk add -U --no-cache bash bash-completion curl jq
 
 # Kubectl CLI
-ARG KUBECTL_VERSION=v1.24.1
+ARG KUBECTL_VERSION=v1.24.10
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/${ARCH}/kubectl && \
     chmod +x ./kubectl && \
     mv ./kubectl /usr/local/bin/kubectl && \
